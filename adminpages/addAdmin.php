@@ -149,82 +149,16 @@ $connect = null;
             background-color: #FFF5F3;
             color: black;
         }
-        /*Yeni ürün ekleme*/
-        .newProduct{
-            height: auto;
-            padding: 20px;
-            margin-left:10px;
-            margin-right: 10px;
-            border: 1px solid #2b2e2b;
-            border-top-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-            background-color: #badadf;
-            color: #2b2e2b;
+
+        #createAdmin{
+            background-color: #BECFE4;
         }
-        .newProductButton{
-            text-align: center;
+        #createAdmin:hover{
+            background-color: green;
+            color: #FFFFFF;
+
         }
 
-        /*alert*/
-        .alert {
-            padding: 20px;
-            background-color: #26a030;
-            color: white;
-            margin-bottom: 15px;
-            visibility: hidden;
-        }
-        .closebtn {
-            margin-left: 15px;
-            color: white;
-            font-weight: bold;
-            float: right;
-            font-size: 22px;
-            line-height: 20px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .closebtn:hover {
-            color: black;
-        }
-        /*section*/
-
-        section{
-            border: 1px solid #2b2e2b;
-            border-top-left-radius: 15px;
-            border-bottom-right-radius: 15px;
-            padding: 5px;
-        }
-        /* ürün arama */
-        .searchTab{
-            text-align: center;
-            background-color: #6dc7d4;
-            border-top-left-radius: 15px;
-            padding: 20px;
-            color: #1d2122;
-        }
-        /* ürün listeleme*/
-        .productList{
-            text-align: center;
-            background-color: #63878d;
-            border-bottom-right-radius: 15px;
-            padding: 20px;
-            color: #1d2122;
-            height: auto;
-            margin: auto;
-            width: auto;
-        }
-        .productList table, th, td, button{
-            border: 1px solid #2b2e2b;
-            text-align: center;
-            border-collapse: collapse;
-            padding: 15px;
-            margin-left: 30px;
-        }
-
-        .error{
-            color:#861212;
-        }
 
 
     </style>
@@ -247,7 +181,7 @@ $connect = null;
     </ul>
 </nav>
 <!-- TODO: ALL LOGIN PAGES-->
-<div  class="container mt-5" style="width: 25%; background-color: #FFF5F3" >
+<div  class="container mt-5" style="width: 25%; background-color: #FFF5F3; border-radius: 10px; border: black solid 1px" >
     <h3 class=" text-center pt-3 mb-3"> Create Admin</h3>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <div class="mb-5  text-center">
@@ -259,7 +193,7 @@ $connect = null;
             <input type="password" class="form-control" id="fPassword" name="fPassword" placeholder="Password">
         </div>
         <div class="text-center">
-            <button type="submit" class="btn mb-5" style="background-color: #BECFE4">Create Admin</button>
+            <button type="submit" class="btn mb-5" id="createAdmin">Create Admin</button>
         </div>
     </form>
 
