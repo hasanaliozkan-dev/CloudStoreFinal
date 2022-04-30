@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
     <!-- TODO extract styles to css-->
 <style>
     @import url('https://fonts.googleapis.com/css?family=Merriweather|Open+Sans');
@@ -78,67 +81,23 @@
         background-color: #FFF5F3;
         color: black;
     }
-    /*Yeni ürün ekleme*/
-    .newProduct{
-        height: auto;
-        padding: 20px;
-        margin-left:10px;
-        margin-right: 10px;
-        border: 1px solid #2b2e2b;
-        border-top-left-radius: 15px;
-        border-bottom-right-radius: 15px;
-        background-color: #badadf;
-        color: #2b2e2b;
-    }
-    .newProductButton{
-        text-align: center;
-    }
 
-    /*alert*/
-    .alert {
-        padding: 20px;
-        background-color: #26a030;
-        color: white;
-        margin-bottom: 15px;
-        visibility: hidden;
-    }
-    .closebtn {
-        margin-left: 15px;
-        color: white;
-        font-weight: bold;
-        float: right;
-        font-size: 22px;
-        line-height: 20px;
-        cursor: pointer;
-        transition: 0.3s;
-    }
 
-    .closebtn:hover {
-        color: black;
-    }
-    /*section*/
 
-    section{
-        border: 1px solid #2b2e2b;
-        border-top-left-radius: 15px;
-        border-bottom-right-radius: 15px;
-        padding: 5px;
-    }
-    /* ürün arama */
     .searchTab{
         text-align: center;
-        background-color: #6dc7d4;
+        background-color: #FFF5F3;
         border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
         padding: 20px;
-        color: #1d2122;
     }
-    /* ürün listeleme*/
     .productList{
         text-align: center;
-        background-color: #63878d;
+        background-color: #BECFE4;
         border-bottom-right-radius: 15px;
+        border-bottom-left-radius: 15px;
         padding: 20px;
-        color: #1d2122;
+
         height: auto;
         margin: auto;
         width: auto;
@@ -150,10 +109,17 @@
         padding: 15px;
         margin-left: 30px;
     }
+    #search{
+        float: right;
+        background-color: #BECFE4;
 
-    .error{
-        color:#861212;
     }
+    #search:hover{
+        background-color: green;
+        color: #FFFFFF;
+
+    }
+
 
 
 </style>
@@ -186,7 +152,7 @@
             <input type="text" name="brand">
             Model:
             <input type="text" name="model">
-            <input type="submit" name="btnSearch" value="Ara">
+            <input class="btn mb-5" type="submit" name="btnSearch" value="Search" id="search">
         </form>
     </div>
     <div class="productList">
