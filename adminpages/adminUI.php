@@ -14,7 +14,7 @@
 
     body {
         font-family: Arial, Helvetica, sans-serif;
-        background-image: url("../bodyback.jpeg");
+        background-image: url("../images/bodyback.jpeg");
         background-repeat: no-repeat;
         background-attachment: fixed;
     }
@@ -129,7 +129,7 @@
 <body>
 <header>
     <div class="logo">
-        <img src="../logo.jpg" style="height: 100px ;width: 100px; border-radius: 50%" onclick="window.location.href='cloud_store.html'">
+        <img src="../images/logo.jpg" style="height: 100px ;width: 100px; border-radius: 50%" onclick="window.location.href='cloud_store.html'">
         <h2 style="padding-left: 20px; margin-bottom: 25px ; margin-top: 20px; margin-right: 20px; font-family: 'Merriweather', serif;">ADMIN PANEL</h2>
     </div>
 

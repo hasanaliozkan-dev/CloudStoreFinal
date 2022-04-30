@@ -27,7 +27,7 @@ if($_GET["Login"] =="no"){
         }
     </style>
 </head>
-<body style=" background-image: url('/bodyback.jpeg');">
+<body style=" background-image: url('/images/bodyback.jpeg');">
 <div  class="container mt-5" style="width: 25%; background-color: #FFF5F3" >
     <h3 class=" text-center pt-3 mb-3"> Login as Admin</h3>
     <form method="post" action="adminUI.php">
