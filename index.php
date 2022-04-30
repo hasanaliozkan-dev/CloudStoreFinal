@@ -58,7 +58,7 @@
         <li><a href="userSignUp.php">Sign Up</a></li>
         <li><a href="userSignIn.php">Sign In</a></li>
         <li><a href="userProfile.php">Profile</a></li>
-        <li><a href="adminLogin.php">Admin Login</a></li>
+        <li><a href="adminpages/adminLogin.php">Admin Login</a></li>
         <li><a href="logOut.php" class="btnOut">Log Out</a></li>
     </ul>
 </nav>

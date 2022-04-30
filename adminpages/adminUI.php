@@ -11,7 +11,7 @@
 
     body {
         font-family: Arial, Helvetica, sans-serif;
-        background-image: url("bodyback.jpeg");
+        background-image: url("../bodyback.jpeg");
         background-repeat: no-repeat;
         background-attachment: fixed;
     }
@@ -163,19 +163,17 @@
 <body>
 <header>
     <div class="logo">
-        <img src="logo.jpg" style="height: 100px ;width: 100px; border-radius: 50%" onclick="window.location.href='cloud_store.html'">
+        <img src="../logo.jpg" style="height: 100px ;width: 100px; border-radius: 50%" onclick="window.location.href='cloud_store.html'">
         <h2 style="padding-left: 20px; margin-bottom: 25px ; margin-top: 20px; margin-right: 20px; font-family: 'Merriweather', serif;">ADMIN PANEL</h2>
-        <p style=" margin-top: 50px; font-size:25px; font-family: 'Merriweather', sans-serif;"> <strong>DO WHAT DO YOU WANT ...</strong></p>
     </div>
 
 </header>
 <nav>
     <ul class="topMenu">
-        <a href="#" ><img src="image/logo.png" alt=""></a>
-        <li><a href="#">Ürün Listele</a></li>
-        <li><a href="adminPanelAppend.php">Ürün Ekle</a></li>
-        <li><a href="adminPanelAppendAdmin.php" class="btnAddAdmin">Admin Ekle</a></li>
-        <li><a href="logOut.php" class="btnOut">Güvenli Çıkış</a></li>
+        <li><a href="adminUI.php">Search Product</a></li>
+        <li><a href="addProduct.php">Add Product</a></li>
+        <li><a href="addAdmin.php" class="btnAddAdmin">Add Admin</a></li>
+        <li><a href="logOutAdmin.php" class="btnOut">Log Out</a></li>
     </ul>
 </nav>
 
