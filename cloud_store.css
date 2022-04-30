@@ -9,12 +9,14 @@ body {
 }
 
 
-.header {
+header {
     background-color: #BECFE4;
     padding: 30px;
     font-size: 35px;
     height: 150px;
     overflow: clip;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 
 }
 .logo{
@@ -22,7 +24,7 @@ body {
 }
 .header_buttons{
     float: right;
-    position: center;
+    margin-left: 250px;
  }
 
 .column {
@@ -38,6 +40,8 @@ nav{
     text-align:center;
     background-color: #BECFE4;
     padding: 10px 0px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 
 ul.topMenu li{
@@ -55,7 +59,7 @@ ul.topMenu li a{
      border-top-right-radius: 5px;
  }
 ul.topMenu li a:hover{
-    background-color: aliceblue;
+    background-color: #FFF5F3;
     color: black;
 }
 
@@ -73,7 +77,6 @@ ul.topMenu li a:hover{
 .square{
     width: 350px;
     height: 400px;
-
     border-radius: 4px;
     box-shadow: 0px 20px 50px #D9DBDF;
     -webkit-transition: all 0.3s ease;
@@ -95,7 +98,6 @@ img{
 .h1{
     margin: auto;
     text-align: center;
-
     font-family: 'Merriweather', serif;
     font-size: 24px;
 }
@@ -137,7 +139,7 @@ input{
 .basket{
     position: fixed;
     display: inline;
-    margin-top: 170px;
+    margin-top: 250px;
     margin-right: 20px;
     right: 0;
     top: 0;

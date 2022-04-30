@@ -38,20 +38,23 @@
 
 
 
-<div class="header" id="header">
+<header class="header" id="header">
  <div class="logo">
   <img src="logo.jpg" style="height: 100px ;width: 100px; border-radius: 50%" onclick="window.location.href='cloud_store.html'">
   <h2 style="padding-left: 20px; margin-bottom: 25px ; margin-top: 20px; font-family: 'Merriweather', serif;">CLOUD STORE</h2>
   <p style=" margin-top: 50px; font-size:25px; font-family: 'Merriweather', sans-serif;"> <strong>WE HAVE YOUR DREAMS IN STORE...</strong></p>
+     <div class="header_buttons">
+         <div style="float: right" onclick="openBasket()"> <img src="basket.jpeg" style="height: 80px; width: 80px;border-radius: 33.3%; border: 1px solid black;" > </div>
+
+     </div>
  </div>
 
-</div>
+</header>
 <nav>
     <ul class="topMenu">
         <a href="#" ><img src="image/logo.png" alt=""></a>
         <li style="color: #ffffff"><?php echo $_SESSION['user']?></li>
         <li><a href="#">Main Page</a></li>
-        <li><a href="#sepetim">My Cart</a></li>
         <li><a href="userSignUp.php">Sign Up</a></li>
         <li><a href="userSignIn.php">Sign In</a></li>
         <li><a href="userProfile.php">Profile</a></li>
@@ -62,8 +65,6 @@
 <br>
 
 <div id= "row" class="row">
-
-
 </div>
 
 <div class="basket" id="basket">

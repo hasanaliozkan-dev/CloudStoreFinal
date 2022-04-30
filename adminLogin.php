@@ -63,17 +63,19 @@ if($_GET["Login"] =="no"){
         /*REGISTER */
         .register{
             text-align: center;
+
+
         }
 
-        .register table{
-            width: 50%;
+        .register {
+            width: 25%;
             margin-left: auto;
             margin-right: auto;
-            margin-top: 50px;
+            margin-top: 200px;
             padding: 20px;
-            background-color: #77aabe9f;
-            border-top-left-radius: 15px;
-            border-bottom-right-radius: 15px;
+            background-color: #FFF5F3;
+            border-radius: 10px;
+            border: black solid 2px;
         }
 
         .register input{
@@ -87,16 +89,11 @@ if($_GET["Login"] =="no"){
 <div class="register">
     <form method="post" action="adminUI.php">
 
-    <table>
-        <tr><td>Admin Girişi</td></tr>
-        <tr><td><input type="text" name="userName" placeholder="User Name"> </td></tr>
-
-        <tr><td><input type="password" name="password" placeholder="Password"></td></tr>
-
-        <tr><td><input type="submit" name="btnLogin" value="Login" style="width:20%"></td></tr>
-
-        <tr><td style="color:#ff0000;"><?php echo $message?></td></tr>
-    </table>
+        <p>Admin Login</p>
+        <input type="text" name="userName" placeholder="User Name"><br>
+        <input type="password" name="password" placeholder="Password"><br>
+        <input type="submit" name="btnLogin" value="Login" style="width:20%"><br>
+        <p style="color:#ff0000;"><?php echo $message?></p><br>
 
     </form>
 </div>
