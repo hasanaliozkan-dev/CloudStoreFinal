@@ -6,6 +6,7 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
+    background-image: url('images/bodyback.jpeg');
 }
 
 
@@ -63,7 +64,14 @@ ul.topMenu li a:hover{
     color: black;
 }
 
-
+ul.topMenu li a.btnOut{
+    color:#164077 ;
+    background-color: #BECFE4;
+}
+ul.topMenu li a.btnOut:hover{
+    background-color: #FFF5F3;
+    color: red;
+}
 
 
 .container{

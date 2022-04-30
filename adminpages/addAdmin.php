@@ -166,7 +166,7 @@ $connect = null;
 <body>
 <header>
     <div class="logo">
-       <a href="adminUI.php"><img src="../images/logo.jpg" style="height: 100px ;width: 100px; border-radius: 50%"></a>
+        <a href="../index.php"> <img src="../images/logo.jpg" style="height: 100px ;width: 100px; border-radius: 50%"></a>
         <h2 style="padding-left: 20px; margin-bottom: 25px ; margin-top: 20px; margin-right: 20px; font-family: 'Merriweather', serif;">ADMIN PANEL</h2>
         <p style=" margin-top: 50px; font-size:25px; font-family: 'Merriweather', sans-serif;"> <strong> ADD ADMIN</strong></p>
     </div>

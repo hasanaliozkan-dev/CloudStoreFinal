@@ -40,7 +40,7 @@
 
 <header class="header" id="header">
  <div class="logo">
-  <img src="images/logo.jpg" style="height: 100px ;width: 100px; border-radius: 50%" onclick="window.location.href='cloud_store.html'">
+     <a href="#"> <img src="../images/logo.jpg" style="height: 100px ;width: 100px; border-radius: 50%"></a>
   <h2 style="padding-left: 20px; margin-bottom: 25px ; margin-top: 20px; font-family: 'Merriweather', serif;">CLOUD STORE</h2>
   <p style=" margin-top: 50px; font-size:25px; font-family: 'Merriweather', sans-serif;"> <strong>WE HAVE YOUR DREAMS IN STORE...</strong></p>
      <div class="header_buttons">
@@ -52,14 +52,13 @@
 </header>
 <nav>
     <ul class="topMenu">
-        <a href="#" ><img src="image/logo.png" alt=""></a>
         <li style="color: #ffffff"><?php echo $_SESSION['user']?></li>
         <li><a href="#">Main Page</a></li>
-        <li><a href="userSignUp.php">Sign Up</a></li>
-        <li><a href="userSignIn.php">Sign In</a></li>
-        <li><a href="userProfile.php">Profile</a></li>
+        <li><a href="userpages/userSignUp.php">Sign Up</a></li>
+        <li><a href="userpages/userSignIn.php">Sign In</a></li>
+        <li><a href="userpages/userProfile.php">Profile</a></li>
         <li><a href="adminpages/adminLogin.php">Admin Login</a></li>
-        <li><a href="logOut.php" class="btnOut">Log Out</a></li>
+        <li><a href="https://www.google.com.tr" class="btnOut">Log Out</a></li>
     </ul>
 </nav>
 <br>

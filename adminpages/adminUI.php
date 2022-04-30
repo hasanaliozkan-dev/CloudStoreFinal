@@ -23,7 +23,7 @@
         background-color: #BECFE4;
         padding: 20px;
         font-size: 35px;
-        height: 100px;
+        height: 150px;
         overflow: clip;
         color: black;
         border-top-left-radius: 10px;
@@ -129,7 +129,7 @@
 <body>
 <header>
     <div class="logo">
-        <img src="../images/logo.jpg" style="height: 100px ;width: 100px; border-radius: 50%" onclick="window.location.href='cloud_store.html'">
+        <a href="../index.php"> <img src="../images/logo.jpg" style="height: 100px ;width: 100px; border-radius: 50%"></a>
         <h2 style="padding-left: 20px; margin-bottom: 25px ; margin-top: 20px; margin-right: 20px; font-family: 'Merriweather', serif;">ADMIN PANEL</h2>
     </div>
 
