@@ -9,6 +9,7 @@
 
 
     <style>
+        @import url('https://fonts.googleapis.com/css?family=Merriweather|Open+Sans');
         * {
             box-sizing: border-box;
         }
@@ -249,7 +250,7 @@ $connect = null;
         <h2 style="padding-left: 20px; margin-bottom: 25px ; margin-top: 20px; font-family: 'Merriweather', serif;">CLOUD STORE</h2>
         <p style=" margin-top: 50px; font-size:25px; font-family: 'Merriweather', sans-serif;"> <strong>USER PROFILE</strong></p>
         <div class="header_buttons" style="float: right; margin-left: 500px;">
-            <div style="float: right" onclick="openBasket()"> <img src="/images/basket.jpeg" style="height: 80px; width: 80px;border-radius: 33.3%; border: 1px solid black;float: right" > </div>
+            <div style="float: right" onclick="openBasket()"> <img src="/images/basket.jpeg" style="height: 80px; width: 80px;border-radius: 33.3%; border: 1px solid black;margin-left: 250px;" > </div>
 
         </div>
     </div>

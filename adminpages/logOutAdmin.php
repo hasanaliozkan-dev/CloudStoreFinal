@@ -1,1 +1,1 @@
-<?php session_start(); session_destroy(); header("Location:adminLogin.php")?>
+<?php session_start(); session_destroy(); header("Location:/CloudStoreFinal/index.php")?>

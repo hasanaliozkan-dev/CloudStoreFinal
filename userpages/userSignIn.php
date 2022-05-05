@@ -41,6 +41,7 @@ $connect = null;
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <style>
+        @import url('https://fonts.googleapis.com/css?family=Merriweather|Open+Sans');
         * {
             box-sizing: border-box;
         }
@@ -49,8 +50,6 @@ $connect = null;
             font-family: Arial, Helvetica, sans-serif;
             background-image: url('/images/bodyback.jpeg');
         }
-
-
         header {
             background-color: #BECFE4;
             padding: 30px;
@@ -136,9 +135,9 @@ $connect = null;
     <div class="logo">
         <a href="../index.php"> <img src="../images/logo.jpg" style="height: 100px ;width: 100px; border-radius: 50%"></a>
         <h2 style="padding-left: 20px; margin-bottom: 25px ; margin-top: 20px; font-family: 'Merriweather', serif;">CLOUD STORE</h2>
-        <p style=" margin-top: 50px; font-size:25px; font-family: 'Merriweather', sans-serif;"> <strong>USER PROFILE</strong></p>
+        <p style=" margin-top: 50px; font-size:25px; font-family: 'Merriweather', sans-serif;"> <strong>SIGN IN</strong></p>
         <div class="header_buttons" style="float: right; margin-left: 500px;">
-            <div style="float: right" onclick="openBasket()"> <img src="/images/basket.jpeg" style="height: 80px; width: 80px;border-radius: 33.3%; border: 1px solid black;float: right" > </div>
+            <div style="float: right" onclick="openBasket()"> <img src="/images/basket.jpeg" style="height: 80px; width: 80px;border-radius: 33.3%; border: 1px solid black;margin-left: 250px" > </div>
 
         </div>
     </div>
@@ -155,7 +154,7 @@ $connect = null;
         <li><a href="logOut.php" class="btnOut">Log Out</a></li>
     </ul>
 </nav>
-<div  class="container mt-5" style="width: 30%; height: 30%; background-color: #FFF5F3; border-radius: 10px; border: black solid 1px" >
+<div  class="container mt-5" style="width: 30%; background-color: #FFF5F3; border-radius: 10px; border: black solid 1px" >
     <h3 class=" text-center pt-3"> User Sign In</h3>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <div class="mb-5  text-center">

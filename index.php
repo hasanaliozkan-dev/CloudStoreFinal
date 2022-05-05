@@ -4,7 +4,7 @@
  $serverName = "localhost";
  $userName = "root";
  $password = "";
- $dataBaseName = "laptopDb";
+ $dataBaseName = "clouddb";
 
  try{
   $connection = new PDO("mysql:host=$serverName",$userName,$password);
@@ -12,6 +12,7 @@
   $queryIsExist = "SHOW DATABASES LIKE '$dataBaseName'";
   $exist = $connection->query($queryIsExist);
   $row = $exist->fetch();
+
 
   if($row>0){
    $connection = null;
@@ -31,7 +32,7 @@
 <head>
  <title>Cloud Store</title>
  <meta charset="utf-8">
- <link rel="stylesheet" href="cloud_store.css">
+ <link rel="stylesheet" href="styles/indexPage.css">
  <script src="cloud_store.js"></script>
 </head>
 <body onload="displayProducts()" style="background-image: url('images/bodyback.jpeg')">
