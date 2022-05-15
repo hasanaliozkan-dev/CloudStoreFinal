@@ -65,8 +65,8 @@ try {
         <li><a href="#" class="btnOut">Log Out</a></li>
     </ul>
 </nav>
-<nav style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px;">
-    <div>
+<nav style="border-bottom-left-radius: 10px;border-bottom-right-radius: 10px; background-color: #FFF5F3; display: block">
+
         <form method="POST">
             <input type="submit" value="RAINY" class="filterButton" name="rainy">
             <input type="submit" value="DIVINE" class="filterButton" name="divine">
@@ -74,7 +74,6 @@ try {
             <input type="submit" value="BROTHER" class="filterButton" name="brother">
             <input type="submit" value="TECHNO" class="filterButton" name="techno">
         </form>
-    </div>
 
 </nav>
 <br>

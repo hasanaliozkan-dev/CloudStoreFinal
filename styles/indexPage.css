@@ -221,10 +221,12 @@ input{
     margin: 10px 10px 10px 15px;
 }
 .filterButton{
-    background-color: #BECFE4;
+    background-color: #FFF5F3;
     width: 15%;
+    border: none;
+    height: 350%;
 }
 .filterButton:hover{
-    background-color: #FFF5F3;
+    background-color: #BECFE4;
     color: black;
 }
