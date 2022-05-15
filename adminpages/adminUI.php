@@ -5,7 +5,7 @@ $server = "localhost";
 $userName = "root";
 $password = "";
 $db = "clouddb";
-$isLogin = true;
+$isLogin = false;
 try{
     $connect = new PDO("mysql:host=$server;dbname=$db",$userName,$password);
     $connect->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);

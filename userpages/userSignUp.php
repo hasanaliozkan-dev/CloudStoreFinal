@@ -122,7 +122,8 @@ try{
                     ('$name','$surname',$year,'$email','$userName','$passwordMD5','$gender')";
             $connect->exec($sqlRegister);
 
-            echo "<script type='text/javascript'>alert('Kayıt başarılı');</script>";
+
+            header("Location:userSignIn.php");
 
             $name ="";
             $surname ="";
@@ -162,7 +163,7 @@ $connect = null;
     <div class="logo">
         <a href="../index.php"> <img src="../images/logo.jpg" style="height: 100px ;width: 100px; border-radius: 50%"></a>
         <h2 style="padding-left: 20px; margin-bottom: 25px ; margin-top: 20px; font-family: 'Merriweather', serif;">CLOUD STORE</h2>
-        <p style=" margin-top: 50px; font-size:25px; font-family: 'Merriweather', sans-serif;"> <strong>USER PROFILE</strong></p>
+        <p style=" margin-top: 50px; font-size:25px; font-family: 'Merriweather', sans-serif;"> <strong>SIGN UP</strong></p>
     </div>
 
 </header>

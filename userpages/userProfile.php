@@ -116,20 +116,6 @@ try{
 catch(PDOException $ex){
     print "Connection Failed" . $ex->getMessage();
 }
-function printInfo(){
-    $currentUser = $_SESSION["user"];
-    $sqlSelect = "SELECT name,surname,year,password,email,web_site FROM users WHERE username='$currentUser'";
-    $result = $connect->query($sqlSelect);
-    $row = $result->fetch();
-
-    if($row['name'] != ""){
-        $name =$row['name'];
-        $surname = $row['surname'];
-        $year = $row['year'];
-        $password = $row['password'];
-        $email = $row['email'];
-    }
-}
 function cleanProcess($input){
     $input = trim($input);
     $input = stripslashes($input);
