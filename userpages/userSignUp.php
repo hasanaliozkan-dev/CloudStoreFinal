@@ -72,15 +72,11 @@
             color: red;
         }
 
-        .error{
-            color:#861212;
-        }
+
         .register{
+            margin-top: 10px;
             text-align: center;
             margin-bottom: 30px;
-        }
-
-        .register table{
             width: 50%;
             margin-left: auto;
             margin-right: auto;
@@ -88,7 +84,6 @@
             padding: 20px;
             background-color: #FFF5F3;
             border-radius: 15px;
-
         }
 
         .register input{
@@ -249,10 +244,6 @@ $connect = null;
         <a href="../index.php"> <img src="../images/logo.jpg" style="height: 100px ;width: 100px; border-radius: 50%"></a>
         <h2 style="padding-left: 20px; margin-bottom: 25px ; margin-top: 20px; font-family: 'Merriweather', serif;">CLOUD STORE</h2>
         <p style=" margin-top: 50px; font-size:25px; font-family: 'Merriweather', sans-serif;"> <strong>USER PROFILE</strong></p>
-        <div class="header_buttons" style="float: right; margin-left: 500px;">
-            <div style="float: right" onclick="openBasket()"> <img src="/images/basket.jpeg" style="height: 80px; width: 80px;border-radius: 33.3%; border: 1px solid black;margin-left: 250px;" > </div>
-
-        </div>
     </div>
 
 </header>
@@ -264,44 +255,47 @@ $connect = null;
         <li><a href="userSignIn.php">Sign In</a></li>
         <li><a href="userProfile.php">Profile</a></li>
         <li><a href="../adminpages/adminLogin.php">Admin Login</a></li>
-        <li><a href="logOut.php" class="btnOut">Log Out</a></li>
+        <li><a href="signOut.php" class="btnOut">Log Out</a></li>
     </ul>
 </nav>
 
-<div class="register">
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'])?>">
-
-        <table>
-            <tr><td colspan="3"><span class="error">* : Required</span></td><td></td><td></td></tr>
-
-            <tr><td>Name: </td> <td><input type="text" name="name" value="<?php echo $name ?>"> </td>
-                <td><span class="error">*<?php echo $nameErr ?></span> </td></tr>
-
-            <tr><td>Surname: </td> <td><input type="text" name="surname" value="<?php echo $surname ?>"> </td>
-                <td><span class="error">*<?php echo $surnameErr ?></span> </td></tr>
-
-            <tr><td>Birth Year: </td> <td><input type="number" name="year" value="<?php echo $year ?>" max=2020> </td>
-                <td><span class="error">*<?php echo $yearErr ?></span> </td></tr>
-
-            <tr><td>E-mail: </td> <td><input type="email" name="email" value="<?php echo $email ?>"> </td>
-                <td><span class="error">*<?php echo $emailErr ?></span> </td></tr>
-
-            <tr><td>User Name: </td> <td><input type="text" name="userName" value="<?php echo $userName ?>"> </td>
-                <td><span class="error">*<?php echo $userNameErr ?></span> </td></tr>
-
-            <tr><td>Password: </td> <td><input type="password" name="password" value="<?php echo $password ?>"> </td>
-                <td><span class="error">*<?php echo $passwordErr ?></span> </td></tr>
-
-            <tr><td>Web Site: </td> <td><input type="url" name="webSite" value="<?php echo $webSite ?>"> </td>
-                <td> </td></tr>
-
-            <tr><td>Gender: </td> <td><input type="radio" name="gender" value="male">Male
-                    <input type="radio" name="gender" value="female">Female </td>
-                <td><span class="error">*<?php echo $genderErr ?></span> </td></tr>
-
-            <tr><td colspan="2"><input  class="btn" type="submit" name="btnSubmit" value="Sign Up" id="signUp"></td><td></td><td></td></tr>
-        </table>
-
+<div class="register p-5" style="width: 40%; background-color: #FFF5F3; border-radius: 10px; border: black solid 1px">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+        <div class="mb-2  text-center">
+            <label for="fName" class="form-label">Name: </label>
+            <input type="text" class="form-control" id="fName"  name="fName" placeholder="Username">
+        </div>
+        <div class="mb-2  text-center">
+            <label for="lName" class="form-label">Surname: </label>
+            <input type="text" class="form-control" id="lName"  name="lName" placeholder="Lastname">
+        </div>
+        <div class="mb-2  text-center">
+            <label for="year" class="form-label">Birth Year: </label>
+            <input type="number" class="form-control" id="year" name="year" placeholder="Year">
+        </div>
+        <div class="mb-2  text-center">
+            <label for="email" class="form-label">Email: </label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email">
+        </div>
+        <div class="mb-2  text-center">
+            <label for="email" class="form-label">User Name: </label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Username">
+        </div>
+        <div class="mb-2  text-center">
+            <label for="password" class="form-label">User Name: </label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+        </div>
+        <div class="mb-2  text-center">
+            <label>
+                <input type="radio" name="gender" value="male">
+            </label>Male
+            <label>
+                <input type="radio" name="gender" value="female">
+            </label>Female
+        </div>
+        <div class="text-center">
+            <button type="submit" class="btn mb-5" id="signUp">Sign In</button>
+        </div>
     </form>
 </div>
 

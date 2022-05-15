@@ -136,10 +136,6 @@ $connect = null;
         <a href="../index.php"> <img src="../images/logo.jpg" style="height: 100px ;width: 100px; border-radius: 50%"></a>
         <h2 style="padding-left: 20px; margin-bottom: 25px ; margin-top: 20px; font-family: 'Merriweather', serif;">CLOUD STORE</h2>
         <p style=" margin-top: 50px; font-size:25px; font-family: 'Merriweather', sans-serif;"> <strong>SIGN IN</strong></p>
-        <div class="header_buttons" style="float: right; margin-left: 500px;">
-            <div style="float: right" onclick="openBasket()"> <img src="/images/basket.jpeg" style="height: 80px; width: 80px;border-radius: 33.3%; border: 1px solid black;margin-left: 250px" > </div>
-
-        </div>
     </div>
 
 </header>
@@ -151,11 +147,11 @@ $connect = null;
         <li><a href="#">Sign In</a></li>
         <li><a href="userProfile.php">Profile</a></li>
         <li><a href="../adminpages/adminLogin.php">Admin Login</a></li>
-        <li><a href="logOut.php" class="btnOut">Log Out</a></li>
+        <li><a href="signOut.php" class="btnOut">Log Out</a></li>
     </ul>
 </nav>
 <div  class="container mt-5" style="width: 30%; background-color: #FFF5F3; border-radius: 10px; border: black solid 1px" >
-    <h3 class=" text-center pt-3"> User Sign In</h3>
+    <h3 class=" text-center pt-3"> User Sign In </h3>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <div class="mb-5  text-center">
             <label for="fUserName" class="form-label">User Name</label>
