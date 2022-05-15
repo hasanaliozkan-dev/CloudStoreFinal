@@ -5,9 +5,9 @@ $server = "localhost";
 $userName = "root";
 $password = "";
 $db = "mobilephonedb";
-/** if(!isset($_SESSION['admin'])){
+if(!isset($_SESSION['admin'])){
 header("Location:adminLogin.php?Login=no");
-}**/
+}
 try{
     $connect = new PDO("mysql:host=$server;dbname=$db",$userName,$password);
     $connect->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);

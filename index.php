@@ -59,7 +59,7 @@
         <li><a href="userpages/userSignIn.php">Sign In</a></li>
         <li><a href="userpages/userProfile.php">Profile</a></li>
         <li><a href="adminpages/adminLogin.php">Admin Login</a></li>
-        <li><a href="https://www.google.com.tr" class="btnOut">Log Out</a></li>
+        <li><a href="../index.php" class="btnOut">Log Out</a></li>
     </ul>
 </nav>
 <br>

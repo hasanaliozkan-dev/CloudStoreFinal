@@ -4,93 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration</title>
+    <link rel="stylesheet" href="../styles/userCommon.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
 
     <style>
-        @import url('https://fonts.googleapis.com/css?family=Merriweather|Open+Sans');
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-            background-image: url('/images/bodyback.jpeg');
-        }
-
-
-        header {
-            background-color: #BECFE4;
-            padding: 30px;
-            font-size: 35px;
-            height: 150px;
-            overflow: clip;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-
-        }
-        .logo{
-            display: inline-flex;
-        }
-        .header_buttons{
-            float: right;
-            margin-left: 250px;
-        }
-        nav{
-            text-align:center;
-            background-color: #BECFE4;
-            padding: 10px 0px;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-        }
-
-        ul.topMenu li{
-            list-style: none;
-            display: inline;
-            font-size: 20px;
-        }
-
-        ul.topMenu li a{
-            text-decoration: none;
-            color:#164077 ;
-            background-color: #BECFE4;
-            padding: 25px;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-        }
-        ul.topMenu li a:hover{
-            background-color: #FFF5F3;
-            color: black;
-        }
-        ul.topMenu li a.btnOut{
-            color:#164077 ;
-            background-color: #BECFE4;
-        }
-        ul.topMenu li a.btnOut:hover{
-            background-color: #FFF5F3;
-            color: red;
-        }
-
-
-        .register{
-            margin-top: 10px;
-            text-align: center;
-            margin-bottom: 30px;
-            width: 50%;
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 50px;
-            padding: 20px;
-            background-color: #FFF5F3;
-            border-radius: 15px;
-        }
-
-        .register input{
-            padding: 7px;
-            margin-top: 10px;
-            border-radius: 5px;
-        }
         #signUp{
             margin-bottom: 25px;
             width:25%;
@@ -114,7 +33,7 @@ session_start();
 $serverName = "localhost";
 $userNameForDB = "root";
 $passwordForDB = "";
-$db = "mobilephonedb";
+$db = "clouddb";
 
 $name = "";
 $surname = "";
@@ -122,24 +41,24 @@ $year = "";
 $email = "";
 $userName = "";
 $password = "";
-$webSite = "";
+
 $gender = "";
 $nameErr=$surnameErr=$emailErr=$userNameErr=$passwordErr=$genderErr=$yearErr = "";
 if($_SERVER['REQUEST_METHOD'] == "POST"){
-    if(empty($_POST['name'])){
+    if(empty($_POST['fName'])){
         $nameErr = "Name is required";
     }else{
-        $name = cleanProcess($_POST['name']);
+        $name = cleanProcess($_POST['fName']);
         if(!preg_match("/^[a-zA-Z üğÜĞİışŞçÇöÖ]*$/",$name)){
             $nameErr = "Only characters and space";
         }else{
             $nameErr ="";
         }
     }
-    if(empty($_POST['surname'])){
+    if(empty($_POST['lName'])){
         $surnameErr = "Surname is required";
     }else{
-        $surname = cleanProcess($_POST['surname']);
+        $surname = cleanProcess($_POST['lName']);
         if(!preg_match("/^[a-zA-Z üğÜĞİışŞçÇöÖ]*$/",$surname)){
             $surnameErr = "Only characters and space";
         }else{
@@ -166,10 +85,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             $emailErr ="";
         }
     }
-    if(empty($_POST['userName'])){
+    if(empty($_POST['username'])){
         $userNameErr = "User Name is required";
     }else{
-        $userName = cleanProcess($_POST['userName']);
+        $userName = cleanProcess($_POST['username']);
         if(!preg_match("/^[a-zA-Z üğÜĞİışŞçÇöÖ]*$/",$userName)){
             $userNameErr = "Only characters and space";
         }else{
@@ -188,10 +107,10 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
         $gender = cleanProcess($_POST['gender']);
         $genderErr = "";
     }
-    $webSite = cleanProcess($_POST['webSite']);
 }
+
 try{
-    $connect = new PDO("mysql:host=$server;dbname=$db",$userNameForDB,$passwordForDB);
+    $connect = new PDO("mysql:host=$serverName;dbname=$db",$userNameForDB,$passwordForDB);
     $connect->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
     if($name !="" && $nameErr=="" && $surnameErr=="" && $yearErr=="" && $emailErr=="" && $userNameErr=="" && $passwordErr=="" && $genderErr==""){
 
@@ -199,8 +118,8 @@ try{
 
         if($isUniq){
             $passwordMD5 = md5($password);
-            $sqlRegister = "INSERT INTO users (name,surname,year,email,user_name,password,web_site,gender) VALUES
-                    ('$name','$surname',$year,'$email','$userName','$passwordMD5','$webSite','$gender')";
+            $sqlRegister = "INSERT INTO users (name,surname,year,email,username,password,gender) VALUES
+                    ('$name','$surname',$year,'$email','$userName','$passwordMD5','$gender')";
             $connect->exec($sqlRegister);
 
             echo "<script type='text/javascript'>alert('Kayıt başarılı');</script>";
@@ -211,12 +130,12 @@ try{
             $email ="";
             $userName ="";
             $password ="";
-            $webSite ="";
+
             $gender ="";
             $userNameErr = "";
         }
         else{
-            $userNameErr = "Kullanıcı adı kullanılıyor!";
+            $userNameErr = "Username is already taken";
         }
     }
 }catch(PDOException $ex){echo $ex;}
@@ -229,11 +148,11 @@ function cleanProcess($input){
 }
 
 function isUserExist($connection, $user){
-    $sqlUsername = "SELECT user_name FROM users WHERE user_name='$user'";
+    $sqlUsername = "SELECT username FROM users WHERE username='$user'";
     $resultOfUserName = $connection->query($sqlUsername);
     $row = $resultOfUserName->fetch();
-    $resultOfThis = $row[0] == "" ? true : false;
-    return $resultOfThis;
+    $result = $row[0] == "" ? true : false;
+    return $result;
 }
 $connect = null;
 
@@ -259,7 +178,7 @@ $connect = null;
     </ul>
 </nav>
 
-<div class="register p-5" style="width: 40%; background-color: #FFF5F3; border-radius: 10px; border: black solid 1px">
+<div class="register p-5 text-center" style="width: 40%; background-color: #FFF5F3; border-radius: 10px; border: black solid 1px">
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <div class="mb-2  text-center">
             <label for="fName" class="form-label">Name: </label>
@@ -279,7 +198,7 @@ $connect = null;
         </div>
         <div class="mb-2  text-center">
             <label for="email" class="form-label">User Name: </label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Username">
+            <input type="text" class="form-control" id="usernam" name="username" placeholder="Username">
         </div>
         <div class="mb-2  text-center">
             <label for="password" class="form-label">User Name: </label>
@@ -294,7 +213,7 @@ $connect = null;
             </label>Female
         </div>
         <div class="text-center">
-            <button type="submit" class="btn mb-5" id="signUp">Sign In</button>
+            <button type="submit" class="btn mb-5" id="signUp" name="signUp">Sign In</button>
         </div>
     </form>
 </div>

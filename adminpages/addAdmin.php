@@ -4,65 +4,58 @@ error_reporting(0);
 $server = "localhost";
 $userNameForDB = "root";
 $passwordForDB = "";
-$db = "mobilephonedb";
-/**if(!isset($_SESSION['admin'])){
+$db = "clouddb";
+/*if(!isset($_SESSION['admin'])){
 header("Location:adminLogin.php?Login=no");
-}**/
+}*/
 
 $userName = "";
 $password = "";
-$authority = "";
-$userNameErr=$passwordErr=$authErr = "";
-if($_SERVER['REQUEST_METHOD'] == "POST"){
+$userNameErr=$passwordErr= "";
     if(empty($_POST['fUserName'])){
-        $userNameErr = "Kullanıcı Adı Giriniz";
+        $userNameErr = "Please provide a username";
     }else{
         $userName = cleanProcess($_POST['fUserName']);
+
         if(!preg_match("/^[a-zA-Z üğÜĞİşŞçÇöÖ]*$/",$userName)){
-            $userNameErr = "Sadece boşluk ve karakterler kabul edilir";
+            $userNameErr = "Only character and space acceptable";
         }else{
             $userNameErr ="";
         }
     }
-    $passwordErr = empty($_POST['fPassword']) ? "Şifre Giriniz" : "";
-    $authErr = empty($_POST['fAuthority']) ? "Yetkinlik Seçiniz" : "";
-}
+    $passwordErr = empty($_POST['fPassword']) ? "Please provide a password" : "";
 try{
-    $connect = new PDO("mysql:host=$server;dbname=$db",$userNameForDB,$passwordForDB);
+
+    $connect = new PDO("mysql:host=$server;dbname=clouddb",$userNameForDB,$passwordForDB);
     $connect->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-    if(isset($_POST['btnInsert']) && $userNameErr == "" && $authErr == "" && $passwordErr == ""){
-        if($_SESSION['auth'] != "super_admin"){
-            echo "<script type='text/javascript'>alert('Yetkinlik Hatası! Admin Eklenmedi');</script>";
-        }else{
+    if(isset($_POST['addAdmin']) && $userNameErr == "" && $passwordErr == ""){
             $password = md5($_POST['fPassword']);
-            $authority = $_POST['fAuthority'];
 
             $sqlTest = "SELECT user_name FROM admins WHERE user_name='$userName'";
             $result = $connect->query($sqlTest);
+
             $row = $result->fetch();
             if($row['user_name'] != ""){
-                $userNameErr = "Kullanıcı adı zaten mevcut!";
+                echo "<script type='text/javascript'>alert('$row');</script>";
+                $userNameErr = "This username is already taken!!!";
             }else{
-                $sql = "INSERT INTO admins VALUES('$userName','$password','$authority')";
+                $sql = "INSERT INTO admins VALUES('$userName','$password')";
                 $result = $connect->exec($sql);
-                echo "<script type='text/javascript'>alert('Admin Eklendi');</script>";
+                echo "<script type='text/javascript'>alert('Admin is added');</script>";
             }
-        }
+
     }
-    $adminName = $_SESSION['admin'];
-    $sqlTest = "SELECT authority FROM admins WHERE user_name='$adminName'";
-    $result = $connect->query($sqlTest);
-    $row = $result->fetch();
-    $_SESSION['auth'] = $row['authority'];
 }
 catch(PDOException $ex){
     print "Connection Failed" . $ex->getMessage();
 }
 
 function cleanProcess($input){
+
     $input = trim($input);
     $input = stripslashes($input);
     $input = htmlspecialchars($input);
+
     return $input;
 }
 
@@ -87,12 +80,6 @@ $connect = null;
             color: #FFFFFF;
 
         }
-        #content{
-            width: 25%;
-            background-color: #FFF5F3;
-            border-radius: 10px;
-            border: black solid 1px;
-        }
 
 
 
@@ -115,10 +102,9 @@ $connect = null;
         <li><a href="logOutAdmin.php" class="btnOut">Log Out</a></li>
     </ul>
 </nav>
-<!-- TODO: ALL LOGIN PAGES-->
+
 <div  class="container mt-5" id="content" >
-    <h3 class=" text-center pt-3 mb-3"> Create Admin</h3>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
+    <form  class="mt-5" action="<?php echo $_SERVER["PHP_SELF"]?>" method="POST">
         <div class="mb-5  text-center">
             <label for="fUserName" class="form-label">User Name</label>
             <input type="text" class="form-control" id="fUserName"  name="fUserName" placeholder="User Name">
@@ -128,7 +114,7 @@ $connect = null;
             <input type="password" class="form-control" id="fPassword" name="fPassword" placeholder="Password">
         </div>
         <div class="text-center">
-            <button type="submit" class="btn mb-5" id="createAdmin">Create Admin</button>
+            <button type="submit" class="btn mb-5" id="createAdmin" name="addAdmin">Add Admin</button>
         </div>
     </form>
 

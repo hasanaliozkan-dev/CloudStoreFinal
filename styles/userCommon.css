@@ -1,19 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Merriweather|Open+Sans');
+* {
+    box-sizing: border-box;
+}
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-image: url("../images/bodyback.jpeg");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-image: url('/images/bodyback.jpeg');
 }
-
 header {
     background-color: #BECFE4;
-    padding: 20px;
+    padding: 30px;
     font-size: 35px;
     height: 150px;
     overflow: clip;
-    color: black;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 
@@ -21,37 +20,15 @@ header {
 .logo{
     display: inline-flex;
 }
-.logoImg{
-   height: 100px;
-    width: 100px;
-    border-radius: 50%;
-}
-.title{
-    padding-left: 20px;
-    margin-bottom: 25px;
-    margin-top: 20px;
-    margin-right: 20px;
-    font-family: 'Merriweather', serif;
-}
-.subTitle{
-    margin-top: 50px;
-    font-size:25px;
-    font-family: 'Merriweather', sans-serif;
-}
-input{
-    border-radius: 7px;
-}
-h1{
-    text-align: center;
-}
 nav{
     text-align:center;
     background-color: #BECFE4;
     padding: 10px 0px;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-
 }
+
+
 ul.topMenu li{
     list-style: none;
     display: inline;
@@ -66,13 +43,9 @@ ul.topMenu li a{
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
 }
-ul.topMenu li a.btnAddAdmin{
-    color:#164077 ;
-    background-color: #BECFE4;
-}
-ul.topMenu li a.btnAddAdmin:hover{
+ul.topMenu li a:hover{
     background-color: #FFF5F3;
-    color: green;
+    color: black;
 }
 ul.topMenu li a.btnOut{
     color:#164077 ;
@@ -82,13 +55,21 @@ ul.topMenu li a.btnOut:hover{
     background-color: #FFF5F3;
     color: red;
 }
-ul.topMenu li a:hover{
+.register{
+    text-align: center;
+    margin-bottom: 30px;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    padding: 20px;
     background-color: #FFF5F3;
-    color: black;
+    border-radius: 15px;
 }
-#content{
-    width: 25%;
-    background-color: #FFF5F3;
-    border-radius: 10px;
-    border: black solid 1px;
+
+
+.register input{
+    padding: 7px;
+    margin-top: 10px;
+    border-radius: 5px;
 }

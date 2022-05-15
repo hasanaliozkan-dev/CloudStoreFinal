@@ -145,22 +145,12 @@ function cleanProcess($input){
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
+    <link rel="stylesheet" href="../styles/userCommon.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
-    <link rel="stylesheet" href="/styles/indexPage.css">
     <style>
 
-
-        .register{
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        .register input,td{
-            padding: 7px;
-            margin-top: 10px;
-        }
         #update{
             width:30%;
             float: right;
@@ -193,8 +183,8 @@ function cleanProcess($input){
         <li><a href="signOut.php" class="btnOut">Log Out</a></li>
     </ul>
 </nav>
-<div class="register container" style="width: 40%; background-color: #FFF5F3; border-radius: 10px; border: black solid 1px;">
-    <form class="mt-5" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST" style="width: 80%;">
+<div class="register p-5 text-center" style="width: 40%; background-color: #FFF5F3; border-radius: 10px; border: black solid 1px">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <div class="mb-2  text-center">
             <label for="fName" class="form-label">Name: </label>
             <input type="text" class="form-control" id="fName"  name="fName" placeholder="<?php echo $name ?>">

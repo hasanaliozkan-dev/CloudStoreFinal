@@ -72,6 +72,10 @@ function displayProducts(){
         row.appendChild(columnn);
 
     }
+
+    if (basketpro.length !== 0){
+        document.getElementById("buyButton").disabled = false;
+    }
 }
 
 function addCloud(){
@@ -164,9 +168,6 @@ function displayBasket(){
         "    <button id=\"buyButton\"  disabled type=\"button\" style=\"background-color: #FFC4FF; float: right;margin-top: 25px;margin-right:25px; height: 30px; width: 70px;border-radius: 25%; border: 0px\" onclick=\"openPayment()\" > <strong>BUY </strong></button>\n" +
         "\n" +
         "\n";
-    if (basketpro.length !== 0){
-        document.getElementById("buyButton").disabled = false;
-    }
     for (let i = 0; i < basketpro.length; i++) {
         basketcont = document.getElementById("basket");
         let totall = document.getElementById("total");
@@ -228,9 +229,7 @@ function totalPrice(){
 }
 
 function openBasket(){
-    if (basketpro.length !== 0){
-        document.getElementById("buyButton").disabled = false;
-    }
+
     if(document.getElementById("basket").style.visibility=== "hidden"){
         document.getElementById("basket").style.visibility= "visible";
         displayBasket()
@@ -241,17 +240,6 @@ function openBasket(){
     }
     totalPrice()
 
-}
-function openAddCloud(){
-    if( document.getElementById("addcloud").style.visibility === "visible"){
-        document.getElementById("addcloud").style.visibility = "hidden";
-    }else{
-        document.getElementById("addcloud").style.visibility = "visible";
-    }
-
-}
-function closeAddCloud(){
-    document.getElementById("addcloud").style.visibility = "hidden";
 }
 function openPayment(){
     document.getElementById("payment_method").style.visibility = "visible";
