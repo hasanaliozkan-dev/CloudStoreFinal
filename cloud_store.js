@@ -5,7 +5,7 @@ class Cloud{
     constructor(name,desc,price,image_url){
         this.name=name;
         this.desc=desc;
-        this.price=price;
+        this.quantityprice=price;
         this.image_url=image_url;
     }
 

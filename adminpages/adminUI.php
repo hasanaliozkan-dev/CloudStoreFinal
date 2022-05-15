@@ -22,11 +22,40 @@ try{
             }
         }
     }
-    if(isset($_POST['btnDel'])){
-        $delElem = $_POST['btnDel'];
+
+    if(isset($_POST['delButton'])){
+        $delElem = $_POST['delButton'];
         $sqlDelete = "DELETE FROM products WHERE id = '$delElem'";
         $connect->exec($sqlDelete);
-        echo "<script type='text/javascript'>alert('Ürün Silindi');</script>";
+        echo "<script type='text/javascript'>alert('Product is deleted successfully');</script>";
+    }
+    if(isset($_POST['minusButton'])){
+        $decElem = $_POST['minusButton'];
+        $oldQuan = 0;
+        $sqlOld = "SELECT quantity FROM products WHERE id = '$decElem'";
+
+        $result = $connect->query($sqlOld);
+        $result = $result->fetch();
+        $oldQuan = $result['quantity'];
+        $newQuan = $oldQuan-1;
+        $sqlDec = "UPDATE `products` SET `quantity`= '$newQuan' WHERE id = '$decElem'";
+
+        $statement = $connect->prepare($sqlDec);
+        $statement->execute();
+    }
+    if(isset($_POST['plusButton'])){
+        $incElem = $_POST['plusButton'];
+        $oldQuan = 0;
+        $sqlOld = "SELECT quantity FROM products WHERE id = '$incElem'";
+
+        $result = $connect->query($sqlOld);
+        $result = $result->fetch();
+        $oldQuan = $result['quantity'];
+        $newQuan = $oldQuan+1;
+        $sqlDec = "UPDATE `products` SET `quantity`= '$newQuan' WHERE id = '$incElem'";
+
+        $statement = $connect->prepare($sqlDec);
+        $statement->execute();
     }
     if(!$isLogin && !isset($_SESSION['admin'])){
         header("Location:adminLogin.php?Login=no");
@@ -35,6 +64,7 @@ try{
 }catch(PDOException $ex){
     print "Connection Failed" . $ex->getMessage();
 }
+
 
 ?>
 
@@ -62,7 +92,6 @@ try{
         border-bottom-right-radius: 15px;
         border-bottom-left-radius: 15px;
         padding: 20px;
-
         height: auto;
         margin: auto;
         width: auto;
@@ -115,11 +144,11 @@ try{
         <form action="" method="POST">
             ID:
             <input type="text" name="id">
-            Marka:
-            <input type="text" name="brand">
-            Model:
-            <input type="text" name="model">
-            <input class="btn mb-5" type="submit" name="btnSearch" value="Search" id="search">
+            Title:
+            <input type="text" name="title">
+            Category:
+            <input type="text" name="category">
+            <input class="btn mb-5" type="submit" name="search" value="Search" id="search">
         </form>
     </div>
     <div class="productList">
@@ -128,30 +157,131 @@ try{
                 <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">BRAND</th>
-                    <th scope="col">MODEL</th>
+                    <th scope="col">CATEGORY</th>
+                    <th scope="col">TITLE</th>
                     <th scope="col">PRICE</th>
                     <th scope="col">QUANTITY</th>
                     <th scope="col">CHANGE QUANTITY</th>
-
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Cloud Rainy</td>
-                    <td>Otto</td>
-                    <td>1234</td>
-                    <td>1234</td>
-                    <td><button type="button" class="btn btn-success" style="width: 25%">+</button>
-                        <button type="button" class="btn btn-warning" style="width: 25%">-</button>
-                        <button type="button" class="btn btn-danger" style="width: 25%">DELETE</button></td>
-                </tr>
             </table>
 
         </form>
     </div>
 
 </section>
+
+<script>
+    var searchProducts=[];
+    var allProducts = [];
+    <?php
+    if(isset($_POST['search'])){
+        $id = $_POST['id'];
+        $title = $_POST['title'];
+        $category = $_POST['category'];
+        $searchQuery = "SELECT id,title,category,price,quantity FROM products WHERE id = '$id' or title = '$title' or category = '$category'";
+        $result = $connect->query($searchQuery);
+        $allsearchProducts = array();
+        while($row=$result->fetch()){
+            array_push($allsearchProducts,$row);
+        }
+        echo "var searchProducts = " . json_encode($allsearchProducts) . ";";
+        $_SESSION['lastProducts'] = $allsearchProducts;
+    }
+    else{
+        $allProductsQuery = "SELECT id,title,category,price,quantity FROM products";
+        $resultall = $connect->query($allProductsQuery);
+        $allProductsResult = array();
+        while($row=$resultall->fetch()){
+            array_push($allProductsResult,$row);
+        }
+        echo "var allProducts = " . json_encode($allProductsResult) . ";";
+    }
+    $connect = null;
+    ?>
+    function PlacedProducts(productList){
+
+        var lengthOfSearch = productList.length;
+        console.log(lengthOfSearch);
+        for (var i = 0; i < lengthOfSearch; i++){
+            var tr = document.createElement('tr');
+            var td1 = document.createElement('td');
+            var td2 = document.createElement('td');
+            var td3 = document.createElement('td');
+            var td4 = document.createElement('td');
+            var td5 = document.createElement('td');
+            var td6 = document.createElement('td');
+
+            var id = document.createTextNode(productList[i][0])
+            td1.appendChild(id);
+            tr.appendChild(td1)
+
+            var category = document.createTextNode(productList[i][2])
+            td2.appendChild(category);
+            tr.appendChild(td2)
+
+            var title = document.createTextNode(productList[i][1])
+            td3.appendChild(title);
+            tr.appendChild(td3)
+
+            var price = document.createTextNode(productList[i][3])
+            td4.appendChild(price);
+            tr.appendChild(td4)
+            var quantity = document.createTextNode(productList[i][4])
+            td5.appendChild(quantity);
+            tr.appendChild(td5)
+
+            var minusButton = document.createElement('button');
+            var plusButton = document.createElement('button');
+            var delButton = document.createElement('button');
+
+            var nodeDel = document.createTextNode('DELETE')
+            var nodeMin = document.createTextNode('-')
+            var nodePlu = document.createTextNode('+')
+            delButton.appendChild(nodeDel);
+            plusButton.appendChild(nodePlu);
+            minusButton.appendChild(nodeMin);
+
+            delButton.classList.add("btn","btn-danger")
+            plusButton.classList.add("btn","btn-success")
+            minusButton.classList.add("btn","btn-warning")
+
+            delButton.style.borderRadius = "10px";
+            plusButton.style.borderRadius = "10px";
+            minusButton.style.borderRadius = "10px";
+
+            delButton.style.width = "25%";
+            plusButton.style.width = "25%";
+            minusButton.style.width = "25%";
+            minusButton.style.color = "white";
+
+            delButton.setAttribute('type','submit');
+            plusButton.setAttribute('type','submit');
+            minusButton.setAttribute('type','submit');
+
+            delButton.setAttribute('name','delButton');
+            plusButton.setAttribute('name','plusButton');
+            minusButton.setAttribute('name','minusButton');
+
+            delButton.setAttribute('value',productList[i].id);
+            plusButton.setAttribute('value',productList[i].id);
+            minusButton.setAttribute('value',productList[i].id);
+            td6.appendChild(minusButton)
+            td6.appendChild(plusButton)
+            td6.appendChild(delButton)
+            tr.appendChild(td6);
+            document.getElementById('tblProducts').appendChild(tr);
+        }
+    }
+
+    PlacedProducts(searchProducts)
+    PlacedProducts(allProducts)
+
+
+
+
+
+</script>
 </body>
 </html>

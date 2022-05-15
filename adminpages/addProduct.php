@@ -4,7 +4,7 @@ error_reporting(0);
 $server = "localhost";
 $userName = "root";
 $password = "";
-$db = "mobilephonedb";
+$db = "clouddb";
 if(!isset($_SESSION['admin'])){
 header("Location:adminLogin.php?Login=no");
 }
@@ -12,26 +12,17 @@ try{
     $connect = new PDO("mysql:host=$server;dbname=$db",$userName,$password);
     $connect->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 
-    if(isset($_POST['btnInsert'])){
-        $brand = $_POST['fBrand'];
-        $model = $_POST['fModel'];
-        $screen = $_POST['fScreen'];
-        $camera = $_POST['fCamera'];
-        $cpu = $_POST['fCPU'];
-        $ram = $_POST['fRAM'];
-        $memory = $_POST['fMemory'];
-        $battery = $_POST['fBattery'];
-        $OS = $_POST['fOS'];
-        $Extra = $_POST['fExtra'];
-        $oldPrice = $_POST['fOldPrice'];
-        $price = $_POST['fPrice'];
-        $picture = $_POST['fPicture'];
+    if(isset($_POST['addProduct'])){
+        $title = $_POST["title"];
+        $link = $_POST["link"];
+        $price = $_POST["price"];
+        $desc = $_POST["desc"];
+        $quantity = $_POST["quantity"];
+        $category = $_POST["category"];
 
-        $sql = "INSERT INTO products(brand, model, screen,camera,cpu,ram,memory,battery,os,extra,old_price,
-            price,picture_address) VALUES('$brand','$model','$screen','$camera','$cpu','$ram','$memory','$battery','$OS','$Extra',
-            '$oldPrice','$price','$picture')";
+        $sql = "INSERT INTO `products`(`title`, `description`, `quantity`, `price`, `image_link`, `category`) VALUES ('$title','$desc','$quantity','$price','$link','$category')";
         $result = $connect->exec($sql);
-        echo "Ürün Eklendi";
+        echo "<script>alert('Product is Added Successfully')</script>";
     }
 }
 catch(PDOException $ex){
@@ -51,7 +42,6 @@ $connect = null;
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
     <style>
-
         .newProduct{
             border: black solid 1px;
             margin-right: 20px;
@@ -75,11 +65,7 @@ $connect = null;
         #addProduct:hover{
             background-color: green;
             color: #FFFFFF;
-
         }
-
-
-
     </style>
 
 </head>
@@ -109,61 +95,32 @@ $connect = null;
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <label for="fBrand">Marka: </label>
-                    <input type="text" id="fBrand" name="fBrand">
+                    <label for="title">Title: </label>
+                    <input type="text" id="title" name="title">
                     <br>
                     <br>
-                    <label for="fModel">Model: </label>
-                    <input type="text" id="fModel" name="fModel">
-                    <br>
-                    <br>
-                    <label for="fScreen">Ekran: </label>
-                    <input type="text" id="fScreen" name="fScreen">
-                    <br>
-                    <br>
-                    <label for="fCamera">Kamera: </label>
-                    <input type="text" id="fCamera" name="fCamera">
-                    <br>
-                    <br>
-                    <label for="fPicture">Fotoğraf Adresi: </label>
-                    <input type="text" id="fPicture" name="fPicture" style="width: 149%;"><br>
+                    <label for="link">Image Link: </label>
+                    <input type="text" id="link" name="link" style="width: 100%;"><br>
                 </div>
                 <div class="col">
-                    <label for="fCPU">İşlemci: </label>
-                    <input type="text" id="fCPU" name="fCPU">
+                    <label for="price">Price: </label>
+                    <input type="number" id="price" name="price">
                     <br>
                     <br>
-                    <label for="fRAM">RAM: </label>
-                    <input type="text" id="fRAM" name="fRAM">
-                    <br>
-                    <br>
-                    <label for="fMemory">Hafıza: </label>
-                    <input type="text" id="fMemory" name="fMemory">
-                    <br>
-                    <br>
-                    <label for="fBattery">Batarya: </label>
-                    <input type="text" id="fBattery" name="fBattery">
-
+                    <label for="desc">Description: </label>
+                    <input type="text" id="desc" name="desc" style="width: 100%;">
                 </div>
                 <div class="col">
-                    <label for="fOS">İşletim Sistemi: </label>
-                    <input type="text" id="fOS" name="fOS">
+                    <label for="quantity">Quantity: </label>
+                    <input type="number" id="quantity" name="quantity">
                     <br>
                     <br>
-                    <label for="fExtra">Ekstra Özellik: </label>
-                    <input type="text" id="fExtra" name="fExtra">
-                    <br>
-                    <br>
-                    <label for="fOldPrice">Eski Fiyat: </label>
-                    <input type="text" id="fOldPrice" name="fOldPrice">
-                    <br>
-                    <br>
-                    <label for="fPrice">Fiyat: </label>
-                    <input type="text" id="fPrice" name="fPrice">
+                    <label for="category">Category: </label>
+                    <input type="text" id="category" name="category">
                 </div>
             </div>
         </div>
-        <button type="submit" class="btn mb-5" id="addProduct" >Add Product</button>
+        <button type="submit" class="btn mb-5" id="addProduct" name="addProduct" >Add Product</button>
     </form>
 
 </div>

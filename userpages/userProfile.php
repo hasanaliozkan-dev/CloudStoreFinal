@@ -82,7 +82,7 @@ try{
     if(isset($_POST['update']) && $nameErr=="" && $surnameErr=="" && $yearErr=="" && $emailErr=="" && $passwordErr==""){
         $user = $_SESSION["user"];
         $pass = $newPassword ? md5($password) : $password;
-        echo $pass;
+
         $sqlPassword = "SELECT password FROM users WHERE username='$user'";
         $result = $connect->query($sqlPassword);
         $rowPassword = $result->fetch();
