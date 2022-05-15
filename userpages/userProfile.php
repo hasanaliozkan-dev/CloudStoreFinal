@@ -2,14 +2,14 @@
 error_reporting(0);
 session_start();
 
-/*if(!isset($_SESSION['user'])){
-    header("Location:userLogin.php");
-}*/
+if(!isset($_SESSION['user'])){
+    header("Location:userSignIn.php");
+}
 
 $server = "localhost";
 $userName = "root";
 $passwordForDB = "";
-$db = "mobilephonedb";
+$db = "clouddb";
 $isLogin = false;
 
 $name ="";
@@ -17,25 +17,25 @@ $surname = "";
 $year = "";
 $password = "";
 $email = "";
-$webSite = "";
+
 $newPassword = false;
 
 $nameErr=$surnameErr=$emailErr=$passwordErr=$yearErr = "";
 if($_SERVER['REQUEST_METHOD'] == "POST"){
-    if(empty($_POST['name'])){
+    if(empty($_POST['fName'])){
         $name = $_SESSION['currentName'];
     }else{
-        $name = cleanProcess($_POST['name']);
+        $name = cleanProcess($_POST['fName']);
         if(!preg_match("/^[a-zA-Z üğÜĞİşŞçÇöÖ]*$/",$name)){
             $nameErr = "Only characters and space";
         }else{
             $nameErr ="";
         }
     }
-    if(empty($_POST['surname'])){
+    if(empty($_POST['lName'])){
         $surname = $_SESSION['currentSurname'];
     }else{
-        $surname = cleanProcess($_POST['surname']);
+        $surname = cleanProcess($_POST['lName']);
         if(!preg_match("/^[a-zA-Z üğÜĞİşŞçÇöÖ]*$/",$surname)){
             $surnameErr = "Only characters and space";
         }else{
@@ -62,44 +62,46 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
             $emailErr ="";
         }
     }
-    if(empty($_POST['newPassword'])){
+    if(empty($_POST['nPassword'])){
         $password = $_SESSION['currentPassword'];
         $newPassword = false;
     }else{
-        $password = cleanProcess($_POST['newPassword']);
+        $password = cleanProcess($_POST['nPassword']);
         $newPassword = true;
         $passwordErr = "";
     }
-    if(empty($_POST['password'])){
-        $passwordErr = "Şifre Gerekli";
+    if(empty($_POST['oPassword'])){
+        $passwordErr = "Password is Required";
     }
-    $webSite = empty($_POST['webSite']) ? $_SESSION['currentWeb'] : cleanProcess($_POST['webSite']);
+
 }
 
 try{
     $connect = new PDO("mysql:host=$server;dbname=$db",$userName,$passwordForDB);
     $connect->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-    if($_POST['btnUpdate'] && $nameErr=="" && $surnameErr=="" && $yearErr=="" && $emailErr=="" && $passwordErr==""){
+    if(isset($_POST['update']) && $nameErr=="" && $surnameErr=="" && $yearErr=="" && $emailErr=="" && $passwordErr==""){
         $user = $_SESSION["user"];
         $pass = $newPassword ? md5($password) : $password;
-        $sqlPassword = "SELECT password FROM users WHERE user_name='$user'";
+        echo $pass;
+        $sqlPassword = "SELECT password FROM users WHERE username='$user'";
         $result = $connect->query($sqlPassword);
         $rowPassword = $result->fetch();
-        if($rowPassword['password'] != md5($_POST['password'])){
-            $passwordErr = "Şifre Yanlış";
+        if($rowPassword['password'] != md5($_POST["oPassword"])){
+            $passwordErr = "Wrong Password";
+            echo $passwordErr;
         }else{
+
             $sqlUpdate = "UPDATE users SET name='$name',surname='$surname',year='$year',
-                password='$pass',email='$email',web_site='$webSite' WHERE user_name='$user' ";
+                password='$pass',email='$email' WHERE username='$user'";
 
             $statement = $connect->prepare($sqlUpdate);
-
             $statement->execute();
 
-            echo "<script type='text/javascript'>alert('Kayıt yenilendi');</script>";
+            echo "<script type='text/javascript'>alert('Profile Successfully Updated');</script>";
         }
     }
     $currentUser = $_SESSION["user"];
-    $sqlSelect = "SELECT name,surname,year,password,email,web_site FROM users WHERE user_name='$currentUser'";
+    $sqlSelect = "SELECT name,surname,year,password,email FROM users WHERE username='$currentUser'";
     $result = $connect->query($sqlSelect);
     $row = $result->fetch();
 
@@ -109,7 +111,6 @@ try{
         $_SESSION['currentYear'] = $year = $row['year'];
         $_SESSION['currentPassword'] = $password = $row['password'];
         $_SESSION['currentEmail'] = $email = $row['email'];
-        $_SESSION['currentWeb'] = $webSite = $row['web_site'];
     }
 }
 catch(PDOException $ex){
@@ -117,7 +118,7 @@ catch(PDOException $ex){
 }
 function printInfo(){
     $currentUser = $_SESSION["user"];
-    $sqlSelect = "SELECT name,surname,year,password,email,web_site FROM users WHERE user_name='$currentUser'";
+    $sqlSelect = "SELECT name,surname,year,password,email,web_site FROM users WHERE username='$currentUser'";
     $result = $connect->query($sqlSelect);
     $row = $result->fetch();
 
@@ -127,7 +128,6 @@ function printInfo(){
         $year = $row['year'];
         $password = $row['password'];
         $email = $row['email'];
-        $webSite = $row['web_site'];
     }
 }
 function cleanProcess($input){
@@ -187,31 +187,31 @@ function cleanProcess($input){
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="POST">
         <div class="mb-2  text-center">
             <label for="fName" class="form-label">Name: </label>
-            <input type="text" class="form-control" id="fName"  name="fName" placeholder="<?php echo $name ?>">
+            <input type="text" class="form-control" id="fName"  name="fName" value="<?php echo $name ?>">
         </div>
         <div class="mb-2  text-center">
             <label for="lName" class="form-label">Surname: </label>
-            <input type="text" class="form-control" id="lName"  name="lName" placeholder="<?php echo $surname ?>">
+            <input type="text" class="form-control" id="lName"  name="lName" value="<?php echo $surname ?>">
         </div>
         <div class="mb-2  text-center">
             <label for="year" class="form-label">Birth Year: </label>
-            <input type="number" class="form-control" id="year" name="year" placeholder="<?php echo $year ?>" max=2004>
+            <input type="number" class="form-control" id="year" name="year" value="<?php echo $year ?>" max=2004>
         </div>
         <div class="mb-2  text-center">
             <label for="email" class="form-label">Email: </label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="<?php echo $email ?>">
+            <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>">
         </div>
         <div class="mb-2  text-center">
             <label for="oPassword" class="form-label">Current Password: </label>
-            <input type="password" class="form-control" id="oPassword" name="oPassword" placeholder="Current Password">
+            <input type="password" class="form-control" id="oPassword" name="oPassword"  placeholder="Current Password">
         </div>
         <div class="mb-2  text-center">
-            <label for="nPassword" class="form-label">User Name: </label>
+            <label for="nPassword" class="form-label">New Password:  </label>
             <input type="password" class="form-control" id="nPassword"  name="nPassword" placeholder="New Password">
 
         </div>
         <div class="text-center">
-            <button type="submit" class="btn mb-5" id="update">Update</button>
+            <button type="submit" class="btn mb-5" id="update" name="update">Update</button>
         </div>
     </form>
 </div>

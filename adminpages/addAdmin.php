@@ -96,6 +96,7 @@ $connect = null;
 </header>
 <nav>
     <ul class="topMenu">
+        <li style="color: #ffffff"><?php echo $_SESSION['admin']?></li>
         <li><a href="adminUI.php">Search Product</a></li>
         <li><a href="addProduct.php">Add Product</a></li>
         <li><a href="addAdmin.php" class="btnAddAdmin">Add Admin</a></li>

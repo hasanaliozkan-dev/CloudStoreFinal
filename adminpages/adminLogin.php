@@ -46,12 +46,12 @@ if($_GET["Login"] =="no"){
 <div  class="container mt-5" id="content" >
     <form class="mt-5" method="post" action="../adminpages/adminUI.php">
         <div class="mb-5  text-center">
-            <label for="fUserName" class="form-label">User Name</label>
-            <input type="text" class="form-control" id="fUserName"  name="fUserName" placeholder="User Name">
+            <label for="userName" class="form-label">User Name</label>
+            <input type="text" class="form-control" id="userName"  name="userName" placeholder="User Name">
         </div>
         <div class="mb-5  text-center">
-            <label for="fPassword" class="form-label">Password</label>
-            <input type="password" class="form-control" id="fPassword" name="fPassword" placeholder="Password">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
         </div>
         <div class="text-center">
             <button type="submit" class="btn mb-5" id="login" name="login" >Login</button>

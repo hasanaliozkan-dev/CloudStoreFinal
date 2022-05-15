@@ -1,3 +1,42 @@
+<?php
+error_reporting(0);
+session_start();
+$server = "localhost";
+$userName = "root";
+$password = "";
+$db = "clouddb";
+$isLogin = true;
+try{
+    $connect = new PDO("mysql:host=$server;dbname=$db",$userName,$password);
+    $connect->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+    if(isset($_POST['login'])){
+        $user = $_POST['userName'];
+        $pass = md5($_POST['password']);
+        $sql = "Select * from admins";
+        $result = $connect->query($sql);
+        while($row = $result->fetch()){
+            if($row['user_name'] == $user && $row['password'] == $pass){
+                $isLogin = true;
+                $_SESSION['admin'] = $_POST['userName'];
+                break;
+            }
+        }
+    }
+    if(isset($_POST['btnDel'])){
+        $delElem = $_POST['btnDel'];
+        $sqlDelete = "DELETE FROM products WHERE id = '$delElem'";
+        $connect->exec($sqlDelete);
+        echo "<script type='text/javascript'>alert('Ürün Silindi');</script>";
+    }
+    if(!$isLogin && !isset($_SESSION['admin'])){
+        header("Location:adminLogin.php?Login=no");
+    }
+
+}catch(PDOException $ex){
+    print "Connection Failed" . $ex->getMessage();
+}
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,6 +102,7 @@
 </header>
 <nav>
     <ul class="topMenu">
+        <li style="color: #ffffff"><?php echo $_SESSION['admin']?></li>
         <li><a href="adminUI.php">Search Product</a></li>
         <li><a href="addProduct.php">Add Product</a></li>
         <li><a href="addAdmin.php" class="btnAddAdmin">Add Admin</a></li>
@@ -84,11 +124,34 @@
     </div>
     <div class="productList">
         <form action="" method="POST">
-            <table id="tblProducts">
-                <tr><th>ID</th><th>Brand</th><th>Model</th></tr>
+            <table class="table container" id="tblProducts">
+                <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">BRAND</th>
+                    <th scope="col">MODEL</th>
+                    <th scope="col">PRICE</th>
+                    <th scope="col">QUANTITY</th>
+                    <th scope="col">CHANGE QUANTITY</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th scope="row">1</th>
+                    <td>Cloud Rainy</td>
+                    <td>Otto</td>
+                    <td>1234</td>
+                    <td>1234</td>
+                    <td><button type="button" class="btn btn-success" style="width: 25%">+</button>
+                        <button type="button" class="btn btn-warning" style="width: 25%">-</button>
+                        <button type="button" class="btn btn-danger" style="width: 25%">DELETE</button></td>
+                </tr>
             </table>
+
         </form>
     </div>
+
 </section>
 </body>
 </html>
