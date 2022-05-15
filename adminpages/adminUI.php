@@ -57,6 +57,14 @@ try{
         $statement = $connect->prepare($sqlDec);
         $statement->execute();
     }
+    if(isset($_POST['updateButton'])){
+
+        $updElem = $_POST['updateButton'];
+        $newPrice = $_POST['newPrice'];
+        $sqlDec = "UPDATE `products` SET `price`= $newPrice WHERE id = '$updElem'";
+        $statement = $connect->prepare($sqlDec);
+        $statement->execute();
+    }
     if(!$isLogin && !isset($_SESSION['admin'])){
         header("Location:adminLogin.php?Login=no");
     }
@@ -162,6 +170,7 @@ try{
                     <th scope="col">PRICE</th>
                     <th scope="col">QUANTITY</th>
                     <th scope="col">CHANGE QUANTITY</th>
+                    <th scope="col">UPDATE PRICE</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -212,6 +221,7 @@ try{
             var td4 = document.createElement('td');
             var td5 = document.createElement('td');
             var td6 = document.createElement('td');
+            var td7 = document.createElement('td');
 
             var id = document.createTextNode(productList[i][0])
             td1.appendChild(id);
@@ -239,6 +249,9 @@ try{
             var nodeDel = document.createTextNode('DELETE')
             var nodeMin = document.createTextNode('-')
             var nodePlu = document.createTextNode('+')
+            var formButtons = document.createElement('form')
+            formButtons.setAttribute("method","post")
+
             delButton.appendChild(nodeDel);
             plusButton.appendChild(nodePlu);
             minusButton.appendChild(nodeMin);
@@ -251,9 +264,9 @@ try{
             plusButton.style.borderRadius = "10px";
             minusButton.style.borderRadius = "10px";
 
-            delButton.style.width = "25%";
-            plusButton.style.width = "25%";
-            minusButton.style.width = "25%";
+            delButton.style.width = "24%";
+            plusButton.style.width = "20%";
+            minusButton.style.width = "20%";
             minusButton.style.color = "white";
 
             delButton.setAttribute('type','submit');
@@ -267,10 +280,44 @@ try{
             delButton.setAttribute('value',productList[i].id);
             plusButton.setAttribute('value',productList[i].id);
             minusButton.setAttribute('value',productList[i].id);
-            td6.appendChild(minusButton)
-            td6.appendChild(plusButton)
-            td6.appendChild(delButton)
+
+            formButtons.appendChild(minusButton)
+            formButtons.appendChild(plusButton)
+            formButtons.appendChild(delButton)
+            td6.append(formButtons)
             tr.appendChild(td6);
+
+            var form = document.createElement("form")
+            form.setAttribute("method","POST");
+
+
+            var newPrice= document.createElement("input")
+            var updateButton = document.createElement("button")
+            var nodeUp = document.createTextNode('UPDATE')
+            updateButton.appendChild(nodeUp);
+            updateButton.style.borderRadius = "10px";
+            updateButton.classList.add("btn","btn-primary")
+
+            updateButton.setAttribute('type','submit');
+            updateButton.setAttribute('name','updateButton');
+            updateButton.setAttribute('value',productList[i].id);
+            updateButton.style.float = "right";
+            newPrice.style.width = "40%";
+
+            newPrice.setAttribute('type' ,'number');
+            newPrice.setAttribute('name' ,'newPrice');
+            newPrice.classList.add("form-control");
+            newPrice.style.border = "1px black solid";
+            form.style.display = "flex";
+            form.append(newPrice);
+            form.append(updateButton)
+            td7.append(form)
+
+
+            tr.appendChild(td7);
+
+
+
             document.getElementById('tblProducts').appendChild(tr);
         }
     }
