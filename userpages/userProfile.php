@@ -130,7 +130,7 @@ function cleanProcess($input){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
+    <title>User Profile</title>
     <link rel="stylesheet" href="../styles/userCommon.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -174,26 +174,42 @@ function cleanProcess($input){
         <div class="mb-2  text-center">
             <label for="fName" class="form-label">Name: </label>
             <input type="text" class="form-control" id="fName"  name="fName" value="<?php echo $name ?>">
+            <div style="margin-left: 30px; margin-bottom: 30px;">
+                <span style=" color:#ff0000;"><?php echo $nameErr?></span>
+            </div>
         </div>
         <div class="mb-2  text-center">
             <label for="lName" class="form-label">Surname: </label>
             <input type="text" class="form-control" id="lName"  name="lName" value="<?php echo $surname ?>">
+            <div style="margin-left: 30px; margin-bottom: 30px;">
+                <span style=" color:#ff0000;"><?php echo $surnameErr?></span>
+            </div>
         </div>
         <div class="mb-2  text-center">
             <label for="year" class="form-label">Birth Year: </label>
             <input type="number" class="form-control" id="year" name="year" value="<?php echo $year ?>" max=2004>
+            <div style="margin-left: 30px; margin-bottom: 30px;">
+                <span style=" color:#ff0000;"><?php echo $yearErr?></span>
+            </div>
         </div>
         <div class="mb-2  text-center">
             <label for="email" class="form-label">Email: </label>
             <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>">
+            <div style="margin-left: 30px; margin-bottom: 30px;">
+                <span style=" color:#ff0000;"><?php echo $emailErr?></span>
+            </div>
         </div>
         <div class="mb-2  text-center">
             <label for="oPassword" class="form-label">Current Password: </label>
             <input type="password" class="form-control" id="oPassword" name="oPassword"  placeholder="Current Password">
+            <div style="margin-left: 30px; margin-bottom: 30px;">
+                <span style=" color:#ff0000;"><?php echo $passwordErr?></span>
+            </div>
         </div>
         <div class="mb-2  text-center">
             <label for="nPassword" class="form-label">New Password:  </label>
             <input type="password" class="form-control" id="nPassword"  name="nPassword" placeholder="New Password">
+
 
         </div>
         <div class="text-center">

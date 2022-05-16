@@ -5,6 +5,7 @@ $server = "localhost";
 $userName = "root";
 $password = "";
 $db = "clouddb";
+$productErr = "";
 if(!isset($_SESSION['admin'])){
 header("Location:adminLogin.php?Login=no");
 }
@@ -19,10 +20,23 @@ try{
         $desc = $_POST["desc"];
         $quantity = $_POST["quantity"];
         $category = $_POST["category"];
+        if($title == "" and $link =="" and $price == "" and $desc =="" and $quantity == "" and $category ==""){
+            $productErr = "Please fill all empty fields";
 
-        $sql = "INSERT INTO `products`(`title`, `description`, `quantity`, `price`, `image_link`, `category`) VALUES ('$title','$desc','$quantity','$price','$link','$category')";
-        $result = $connect->exec($sql);
-        echo "<script>alert('Product is Added Successfully')</script>";
+        }
+        else if ($price<=0 ){
+            $productErr ="Price can not be negative";
+        }else if($quantity<=0){
+            $productErr ="Quantity can not be negative";
+
+        }
+        else{
+            $sql = "INSERT INTO `products`(`title`, `description`, `quantity`, `price`, `image_link`, `category`) VALUES ('$title','$desc','$quantity','$price','$link','$category')";
+            $result = $connect->exec($sql);
+            echo "<script>alert('Product is Added Successfully')</script>";
+        }
+
+
     }
 }
 catch(PDOException $ex){
@@ -36,7 +50,7 @@ $connect = null;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
+    <title>Add Product</title>
     <link rel="stylesheet" href="../styles/adminCommon.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -121,6 +135,10 @@ $connect = null;
             </div>
         </div>
         <button type="submit" class="btn mb-5" id="addProduct" name="addProduct" >Add Product</button>
+
+        <div style="margin-left: 500px;  margin-top: 100px;">
+            <span style=" color:#ff0000;"><?php echo $productErr?></span>
+        </div>
     </form>
 
 </div>

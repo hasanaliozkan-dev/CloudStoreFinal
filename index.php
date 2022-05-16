@@ -34,6 +34,7 @@ try {
     <meta charset="utf-8">
     <link rel="stylesheet" href="styles/indexPage.css">
     <script src="cloud_store.js"></script>
+
 </head>
 <body style="background-image: url('images/bodyback.jpeg')">
 

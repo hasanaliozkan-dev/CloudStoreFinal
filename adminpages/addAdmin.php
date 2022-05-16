@@ -5,15 +5,17 @@ $server = "localhost";
 $userNameForDB = "root";
 $passwordForDB = "";
 $db = "clouddb";
-/*if(!isset($_SESSION['admin'])){
+if(!isset($_SESSION['admin'])){
 header("Location:adminLogin.php?Login=no");
-}*/
+}
 
 $userName = "";
 $password = "";
 $userNameErr=$passwordErr= "";
+if(isset($_POST["addAdmin"])){
     if(empty($_POST['fUserName'])){
         $userNameErr = "Please provide a username";
+
     }else{
         $userName = cleanProcess($_POST['fUserName']);
 
@@ -24,6 +26,8 @@ $userNameErr=$passwordErr= "";
         }
     }
     $passwordErr = empty($_POST['fPassword']) ? "Please provide a password" : "";
+}
+
 try{
 
     $connect = new PDO("mysql:host=$server;dbname=clouddb",$userNameForDB,$passwordForDB);
@@ -36,8 +40,7 @@ try{
 
             $row = $result->fetch();
             if($row['user_name'] != ""){
-                echo "<script type='text/javascript'>alert('$row');</script>";
-                $userNameErr = "This username is already taken!!!";
+                $userNameErr = "This username is already taken";
             }else{
                 $sql = "INSERT INTO admins VALUES('$userName','$password')";
                 $result = $connect->exec($sql);
@@ -67,7 +70,7 @@ $connect = null;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Panel</title>
+    <title>Add Admin</title>
     <link rel="stylesheet" href="../styles/adminCommon.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
@@ -116,6 +119,11 @@ $connect = null;
         </div>
         <div class="text-center">
             <button type="submit" class="btn mb-5" id="createAdmin" name="addAdmin">Add Admin</button>
+        </div>
+        <div style="margin-left: 20%; margin-right: 20%; margin-bottom: 30px;">
+            <span style=" color:#ff0000;"><?php echo $userNameErr?></span>
+            <br>
+            <span style=" color:#ff0000;"><?php echo $passwordErr?></span>
         </div>
     </form>
 
