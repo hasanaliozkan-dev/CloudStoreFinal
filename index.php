@@ -168,8 +168,7 @@ try {
 
     var counter = 0;
     var productLength = <?php echo $productLength ?>;
-    var basketpro = [];
-    sessionStorage.setItem("basket",JSON.stringify(basketpro))
+
     class Cloud {
         constructor(title, desc, quantity, price, image_url, category) {
             this.title = title;
@@ -260,6 +259,7 @@ try {
 
 
     function addToBasket(){
+
         var parent = event.target.parentElement.parentElement.children;
         console.log(parent[2])
         //constructor(title,desc,quantity,price,image_url,category){
@@ -279,9 +279,9 @@ try {
 
     }
 
-    basketpro = JSON.parse(sessionStorage.getItem("basket"));
-    function displayBasket(){
 
+    function displayBasket(){
+        basketpro = JSON.parse(sessionStorage.getItem("basket"));
         let basketcont = document.getElementById("basket");
         basketcont.innerHTML = "<div class=\"total\" id=\"total\">\n" +
             "        <h4> TOTAL PRICE:  </h4>\n" +
